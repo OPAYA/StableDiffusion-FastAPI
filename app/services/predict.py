@@ -42,6 +42,7 @@ class StabilityService:
             samples=samples,
             sampler=generation.SAMPLER_K_DPMPP_2M,
         )
+        
         images = []
         for resp in answers:
             for artifact in resp.artifacts:
@@ -50,5 +51,6 @@ class StabilityService:
                         "Your request activated the API's safety filters and could not be processed. Please modify the prompt and try again."
                     )
                 if artifact.type == generation.ARTIFACT_IMAGE:
-                    images.append(artifact.binary)
+                    img = Image.open(io.BytesIO(artifact.binary))
+                    images.append(img)
         return images
