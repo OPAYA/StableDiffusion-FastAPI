@@ -3,6 +3,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from dotenv import load_dotenv
 from app.router import router
 import os
+load_dotenv()
 
 app = FastAPI()
 
@@ -14,6 +15,8 @@ origins = [
     "http://127.0.0.1",
     "http://127.0.0.1:8080",
 ]
+origins += os.environ.get('AWS_IP')
+
 app.add_middleware(
     CORSMiddleware,
     allow_origins=origins,
