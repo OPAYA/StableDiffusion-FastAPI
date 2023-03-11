@@ -1,4 +1,5 @@
 .env
 __pycahce__
 app/__pycahce__
-app/services/__pycahce__
+app/services/__pycache__
+app/middlewares/__pycache__
